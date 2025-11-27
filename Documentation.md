@@ -4,6 +4,44 @@ See
 - Specification https://docs.ogc.org/is/18-043r3/18-043r3.html 
 - The HDF5 Field Guide https://support.hdfgroup.org/documentation/hdf5/latest/index.html
 
+# KNMI
+
+See
+- https://developer.dataplatform.knmi.nl/
+- Dataset gemiddelde temperatuur nederland https://dataplatform.knmi.nl/dataset/tx1-2
+  - Datasetname: Tx1
+  - Datasetversion: 2
+
+
+## Metadata
+
+
+| Attribute                   | Value                       |
+|-----------------------------|-----------------------------|
+| Dataset name	                | Tx1                         |
+| Dataset version	            | 2                           |
+| Status	                      | onGoing                     |
+| Update frequency             |	daily                       |
+| File formats                 |	NetCDF                      |
+| Spatial representation type  |	grid                        |
+| License                      |	https://creativecommons.org/licenses/by/4.0/|
+| North bound latitude         |	53.7                        |
+| East bound longitude         |	7.4                         |
+| South bound latitude	        | 50.6                        |
+| West bound longitude         |	3.2                         |
+| Dataset edition	            | 3                           |
+| Dataset manager              |	Dr. Peter Siegmund          |
+| Maintainer	                  | KNMI Data Services          |
+| Publication date	            | 2015-05-04                  |
+| Reference system identifier	| EPSG28992                   |
+| Dataset start time           |	1961-01-01                  |
+| Dataset end time	            | 9999-12-31                  |
+| Identifier                   |	urn:xkdc:ds:nl.knmi::Tx1/2/ |
+| Lineage statement	          | The interpolation method is Inverse Distance Weighted interpolation (IDW) using power parameter 2.0. Block size is 20km and search radius 110km. Due to use of a block it is not an exact interpolator: the interpolated value at a point can differ from the measured value. The number of observations changes from 15 (1961) to 26 (1991), 37 (1994) and 34 (2012).|
+| Purpose	                    | Research                    |
+| Use limitation	              | No use limitations          |
+
+
 # Start of project
 
 ## Create a python environment
@@ -494,5 +532,90 @@ Dataset contents: [0 1 2 3 4 5 6 7 8 9]
 $ python hdf5test/example.py 
 Created HDF5 file at: sample.h5
 Dataset contents: [0 1 2 3 4 5 6 7 8 9]
+
+```
+
+# Coding
+
+## Tooling for openapi generator
+
+```bash
+$ wget https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.17.0/openapi-generator-cli-7.17.0.jar -O openapi-generator-cli.jar
+
+--2025-11-27 19:22:40--  https://repo1.maven.org/maven2/org/openapitools/openapi-generator-cli/7.17.0/openapi-generator-cli-7.17.0.jar
+Resolving repo1.maven.org (repo1.maven.org)... 2606:4700::6812:130c, 2606:4700::6812:120c, 104.18.18.12, ...
+Connecting to repo1.maven.org (repo1.maven.org)|2606:4700::6812:130c|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 30971683 (30M) [application/java-archive]
+Saving to: ‘openapi-generator-cli.jar’
+
+openapi-generator-cli.jar                     100%[=================================================================================================>]  29.54M  14.1MB/s    in 2.1s    
+
+2025-11-27 19:22:43 (14.1 MB/s) - ‘openapi-generator-cli.jar’ saved [30971683/30971683]
+
+$ alias openapi-generator="java -jar $(pwd)/openapi-generator-cli.jar"
+```
+
+
+## Generate openapi client
+
+```bash
+$ openapi-generator generate \
+  -i apis/knmi-api.json \
+  -g python \
+  -o knmi_client
+
+[main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
+[main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - Output directory (/home/bvpelt/Develop/hdf5test/knmi_client) does not exist, or is inaccessible. No file (.openapi-generator-ignore) will be evaluated.
+[main] INFO  o.o.codegen.DefaultGenerator - OpenAPI Generator: python (client)
+[main] INFO  o.o.codegen.DefaultGenerator - Generator 'python' is considered stable.
+[main] INFO  o.o.c.l.AbstractPythonCodegen - Environment variable PYTHON_POST_PROCESS_FILE not defined so the Python code may not be properly formatted. To define it, try 'export PYTHON_POST_PROCESS_FILE="/usr/local/bin/yapf -i"' (Linux/Mac)
+[main] INFO  o.o.c.l.AbstractPythonCodegen - NOTE: To enable file post-processing, 'enablePostProcessFile' must be set to `true` (--enable-post-process-file for CLI).
+[main] WARN  o.o.codegen.utils.ModelUtils - Failed to get the schema name: null
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/models/file_download.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/test/test_file_download.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/docs/FileDownload.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/models/file_summary.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/test/test_file_summary.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/docs/FileSummary.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/models/list_files_response.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/test/test_list_files_response.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/docs/ListFilesResponse.md
+[main] WARN  o.o.codegen.DefaultCodegen - Empty operationId found for path: get /v1/datasets/{datasetName}/versions/{versionId}/files. Renamed to auto-generated operationId: v1DatasetsDatasetNameVersionsVersionIdFilesGet
+[main] WARN  o.o.codegen.DefaultCodegen - Empty operationId found for path: get /v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url. Renamed to auto-generated operationId: v1DatasetsDatasetNameVersionsVersionIdFilesFilenameUrlGet
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/api/default_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/test/test_default_api.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/docs/DefaultApi.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/README.md
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/tox.ini
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/test-requirements.txt
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/requirements.txt
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/setup.cfg
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/git_push.sh
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/.gitignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/.travis.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/.github/workflows/python.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/.gitlab-ci.yml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/setup.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/pyproject.toml
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/py.typed
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/configuration.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/__init__.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/models/__init__.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/api/__init__.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/exceptions.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/test/__init__.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/api_client.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/api_response.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/openapi_client/rest.py
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/.openapi-generator-ignore
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/.openapi-generator/VERSION
+[main] INFO  o.o.codegen.TemplateManager - writing file /home/bvpelt/Develop/hdf5test/knmi_client/.openapi-generator/FILES
+############################################################################################
+# Thanks for using OpenAPI Generator.                                                      #
+# We appreciate your support! Please consider donation to help us maintain this project.   #
+# https://opencollective.com/openapi_generator/donate                                      #
+############################################################################################
+
 
 ```

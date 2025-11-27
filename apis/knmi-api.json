@@ -1,0 +1,276 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+        "title": "KNMI Data Platform - Open Data API",
+        "version": "v1",
+        "description": "For more information on the Open Data API and how to use it, visit the [Open Data API Documentation Page](https://developer.dataplatform.knmi.nl/open-data-api)."
+    },
+    "servers": [{ "url": "https://api.dataplatform.knmi.nl/open-data" }],
+    "paths": {
+        "/v1/datasets/{datasetName}/versions/{versionId}/files": {
+            "get": {
+                "summary": "Get paginated list of files for dataset",
+                "description": "Get paginated list of files for dataset",
+                "parameters": [
+                    {
+                        "name": "datasetName",
+                        "in": "path",
+                        "description": "Name of the dataset",
+                        "required": true,
+                        "schema": { "type": "string" },
+                        "examples": {
+                            "10-minute-in-situ-meteorological-observations": {
+                                "value": "10-minute-in-situ-meteorological-observations"
+                            }
+                        }
+                    },
+                    {
+                        "name": "versionId",
+                        "in": "path",
+                        "description": "Version of the dataset",
+                        "required": true,
+                        "schema": { "type": "string" },
+                        "examples": { "1.0": { "value": "1.0" } }
+                    },
+                    {
+                        "name": "maxKeys",
+                        "in": "query",
+                        "description": "Maximum number of files to return",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "default": 10,
+                            "maximum": 1000
+                        }
+                    },
+                    {
+                        "name": "sorting",
+                        "in": "query",
+                        "description": "Sort the files in ascending or descending order",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "asc",
+                            "enum": ["asc", "desc"]
+                        }
+                    },
+                    {
+                        "name": "orderBy",
+                        "in": "query",
+                        "description": "Order the files by filename, timestamp of creation or timestamp of last modification",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "default": "filename",
+                            "enum": ["filename", "lastModified", "created"]
+                        }
+                    },
+                    {
+                        "name": "begin",
+                        "in": "query",
+                        "description": "This parameter controls filtering (together with end). It defines the lower limit of the requested data. If ordering by filename, provide a string. If ordering by lastModified or created, provide a timestamp in ISO8601 format with a timezone (e.g. 2022-01-01T00:00:00Z).",
+                        "required": false,
+                        "schema": { "type": "string" },
+                        "examples": {
+                            "Start from the first file": {},
+                            "From 2022 (order by filename)": {
+                                "value": "KMDS__OPER_P___10M_OBS_L2_2022"
+                            },
+                            "From 2022 (order by created)": {
+                                "value": "2022-01-01T00:00:00Z"
+                            },
+                            "From 2023, including timezone (order by created)": {
+                                "value": "2022-01-11T02:00:00-02:00"
+                            }
+                        }
+                    },
+                    {
+                        "name": "end",
+                        "in": "query",
+                        "description": "This parameter controls filtering (together with begin). It defines the upper limit of the requested data. If ordering by filename, provide a string. If ordering by lastModified or created, provide a timestamp in ISO8601 format with a timezone (e.g. 2022-01-01T00:00:00Z).",
+                        "required": false,
+                        "schema": { "type": "string" },
+                        "examples": {
+                            "Until the last file": {},
+                            "Before 2023 (order by filename)": {
+                                "value": "KMDS__OPER_P___10M_OBS_L2_2023"
+                            },
+                            "Before 2023 (order by created)": {
+                                "value": "2022-12-31T23:59:59Z"
+                            },
+                            "Before 2023, including timezone (order by created)": {
+                                "value": "2022-12-31T21:59:59+02:00"
+                            }
+                        }
+                    },
+                    {
+                        "name": "nextPageToken",
+                        "in": "query",
+                        "description": "Token to retrieve the next page of results. This token is returned by the API if the result set is larger than the maximum number of files to return.",
+                        "required": false,
+                        "schema": { "type": "string" }
+                    },
+                    {
+                        "name": "startAfterFilename",
+                        "in": "query",
+                        "description": "Provide a filename to start listing after. Note: This deprecated parameter cannot be combined with orderBy, begin, end or sorting. Instead, use `nextPageToken`.",
+                        "required": false,
+                        "deprecated": true,
+                        "schema": { "type": "string" }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "schema": { "type": "string" },
+                                "description": "The Access-Control-Allow-Origin response header indicates whether the response can be shared with requesting code from the given origin."
+                            },
+                            "X-KNMI-Deprecation": {
+                                "schema": { "type": "string" },
+                                "description": "Specifies if the dataset is deprecated."
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListFilesResponse"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{ "APIKeyHeader": [] }]
+            }
+        },
+        "/v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url": {
+            "get": {
+                "summary": "Get a temporary download URL for a dataset file",
+                "description": "Get a temporary download URL for a dataset file",
+                "parameters": [
+                    {
+                        "name": "datasetName",
+                        "in": "path",
+                        "description": "Name of the dataset",
+                        "required": true,
+                        "schema": { "type": "string" },
+                        "examples": {
+                            "10-minute-in-situ-meteorological-observations": {
+                                "value": "10-minute-in-situ-meteorological-observations"
+                            }
+                        }
+                    },
+                    {
+                        "name": "versionId",
+                        "in": "path",
+                        "description": "Version of the dataset",
+                        "required": true,
+                        "schema": { "type": "string" },
+                        "examples": { "1.0": { "value": "1.0" } }
+                    },
+                    {
+                        "name": "filename",
+                        "in": "path",
+                        "description": "Name of the file",
+                        "required": true,
+                        "schema": { "type": "string" },
+                        "examples": {
+                            "KMDS__OPER_P___10M_OBS_L2_202212102330.nc": {
+                                "value": "KMDS__OPER_P___10M_OBS_L2_202212102330.nc"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "headers": {
+                            "Access-Control-Allow-Origin": {
+                                "schema": { "type": "string" },
+                                "description": "The Access-Control-Allow-Origin response header indicates whether the response can be shared with requesting code from the given origin."
+                            },
+                            "X-KNMI-Deprecation": {
+                                "schema": { "type": "string" },
+                                "description": "Specifies if the dataset is deprecated."
+                            }
+                        },
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/FileDownload"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [{ "APIKeyHeader": [] }]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "FileSummary": {
+                "type": "object",
+                "title": "FileSummary",
+                "properties": {
+                    "filename": { "type": "string" },
+                    "lastModified": { "type": "string" },
+                    "size": { "type": "integer" },
+                    "created": { "type": "string" }
+                },
+                "additionalProperties": false,
+                "required": ["filename", "lastModified", "size", "created"]
+            },
+            "ListFilesResponse": {
+                "type": "object",
+                "title": "ListFilesResponse",
+                "properties": {
+                    "isTruncated": { "type": "boolean" },
+                    "files": {
+                        "type": "array",
+                        "items": { "$ref": "#/components/schemas/FileSummary" }
+                    },
+                    "resultCount": { "type": "integer" },
+                    "maxResults": { "type": "integer" },
+                    "startAfterFilename": { "type": "string" },
+                    "nextPageToken": { "type": "string" }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "isTruncated",
+                    "files",
+                    "resultCount",
+                    "maxResults",
+                    "startAfterFilename",
+                    "nextPageToken"
+                ]
+            },
+            "FileDownload": {
+                "type": "object",
+                "title": "FileDownload",
+                "properties": {
+                    "contentType": { "type": "string" },
+                    "size": { "type": "string" },
+                    "lastModified": { "type": "string" },
+                    "temporaryDownloadUrl": { "type": "string" }
+                },
+                "additionalProperties": false,
+                "required": [
+                    "contentType",
+                    "size",
+                    "lastModified",
+                    "temporaryDownloadUrl"
+                ]
+            }
+        },
+        "securitySchemes": {
+            "APIKeyHeader": {
+                "type": "apiKey",
+                "name": "Authorization",
+                "in": "header",
+                "description": ""
+            }
+        }
+    }
+}
