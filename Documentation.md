@@ -1,3 +1,9 @@
+# HDF5
+
+See
+- Specification https://docs.ogc.org/is/18-043r3/18-043r3.html 
+- The HDF5 Field Guide https://support.hdfgroup.org/documentation/hdf5/latest/index.html
+
 # Start of project
 
 ## Create a python environment
