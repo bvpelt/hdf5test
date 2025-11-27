@@ -397,3 +397,81 @@ $ code --install-extension ms-python.vscode-pylance
 Installing extensions...
 Extension 'ms-python.vscode-pylance' is already installed.
 ```
+
+## Select interpreter
+Select the project’s virtual environment
+
+Press:
+
+Ctrl+Shift+P → “Python: Select Interpreter”
+
+
+Choose:
+
+./.venv/bin/python
+
+## Create .vscode/settings.json
+
+```json
+{
+    "python.defaultInterpreterPath": ".venv/bin/python",
+    "python.terminal.activateEnvironment": true,
+    "python.analysis.extraPaths": [
+        "hdf5test"
+    ],
+    "python.testing.pytestEnabled": true,
+    "python.testing.unittestEnabled": false,
+    "python.testing.pytestArgs": [
+        "tests"
+    ],
+    "editor.codeActionsOnSave": {
+        "source.organizeImports": "explicit"
+    },
+    "files.exclude": {
+        "**/__pycache__": true,
+        "**/*.pyc": true
+    }
+}
+```
+
+What this config does:
+
+Makes VS Code use your .venv automatically
+
+Enables pytest on the tests/ folder
+
+Keeps your workspace clean from compiled Python files
+
+Enables import auto-organizing
+
+## (Optional) Add Python debug configuration
+
+Create .vscode/launch.json
+
+```json
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Run example.py",
+            "type": "python",
+            "request": "launch",
+            "program": "${workspaceFolder}/hdf5test/example.py",
+            "console": "integratedTerminal"
+        }
+    ]
+}
+```
+
+## (Recommended) Add a .editorconfig for consistent coding style
+Create .editorconfig
+```text
+root = true
+
+[*]
+indent_style = space
+indent_size = 4
+charset = utf-8
+trim_trailing_whitespace = true
+insert_final_newline = true
+```
