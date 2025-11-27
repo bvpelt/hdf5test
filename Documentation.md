@@ -465,6 +465,7 @@ Create .vscode/launch.json
 
 ## (Recommended) Add a .editorconfig for consistent coding style
 Create .editorconfig
+
 ```text
 root = true
 
@@ -474,4 +475,18 @@ indent_size = 4
 charset = utf-8
 trim_trailing_whitespace = true
 insert_final_newline = true
+```
+
+# Run the example script
+
+```bash
+$ python -m hdf5test.example
+Created HDF5 file at: sample.h5
+Dataset contents: [0 1 2 3 4 5 6 7 8 9]
+
+
+$ python hdf5test/example.py 
+Created HDF5 file at: sample.h5
+Dataset contents: [0 1 2 3 4 5 6 7 8 9]
+
 ```
