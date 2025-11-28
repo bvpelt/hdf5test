@@ -1,46 +1,45 @@
 # HDF5
 
 See
-- Specification https://docs.ogc.org/is/18-043r3/18-043r3.html 
-- The HDF5 Field Guide https://support.hdfgroup.org/documentation/hdf5/latest/index.html
+
+-   Specification https://docs.ogc.org/is/18-043r3/18-043r3.html
+-   The HDF5 Field Guide https://support.hdfgroup.org/documentation/hdf5/latest/index.html
 
 # KNMI
 
 See
-- https://developer.dataplatform.knmi.nl/
-- Dataset gemiddelde temperatuur nederland https://dataplatform.knmi.nl/dataset/tx1-2
-  - Datasetname: Tx1
-  - Datasetversion: 2
 
+-   https://developer.dataplatform.knmi.nl/
+-   Dataset gemiddelde temperatuur nederland https://dataplatform.knmi.nl/dataset/tx1-2
+    -   Datasetname: Tx1
+    -   Datasetversion: 2
 
 ## Metadata
 
-
-| Attribute                   | Value                       |
-|-----------------------------|-----------------------------|
-| Dataset name	                | Tx1                         |
-| Dataset version	            | 2                           |
-| Status	                      | onGoing                     |
-| Update frequency             |	daily                       |
-| File formats                 |	NetCDF                      |
-| Spatial representation type  |	grid                        |
-| License                      |	https://creativecommons.org/licenses/by/4.0/|
-| North bound latitude         |	53.7                        |
-| East bound longitude         |	7.4                         |
-| South bound latitude	        | 50.6                        |
-| West bound longitude         |	3.2                         |
-| Dataset edition	            | 3                           |
-| Dataset manager              |	Dr. Peter Siegmund          |
-| Maintainer	                  | KNMI Data Services          |
-| Publication date	            | 2015-05-04                  |
-| Reference system identifier	| EPSG28992                   |
-| Dataset start time           |	1961-01-01                  |
-| Dataset end time	            | 9999-12-31                  |
-| Identifier                   |	urn:xkdc:ds:nl.knmi::Tx1/2/ |
-| Lineage statement	          | The interpolation method is Inverse Distance Weighted interpolation (IDW) using power parameter 2.0. Block size is 20km and search radius 110km. Due to use of a block it is not an exact interpolator: the interpolated value at a point can differ from the measured value. The number of observations changes from 15 (1961) to 26 (1991), 37 (1994) and 34 (2012).|
-| Purpose	                    | Research                    |
-| Use limitation	              | No use limitations          |
-
+| Attribute                   | Value                                                                                                                                                                                                                                                                                                                                                                  |
+| --------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Dataset name                | Tx1                                                                                                                                                                                                                                                                                                                                                                    |
+| Dataset version             | 2                                                                                                                                                                                                                                                                                                                                                                      |
+| Status                      | onGoing                                                                                                                                                                                                                                                                                                                                                                |
+| Update frequency            | daily                                                                                                                                                                                                                                                                                                                                                                  |
+| File formats                | NetCDF                                                                                                                                                                                                                                                                                                                                                                 |
+| Spatial representation type | grid                                                                                                                                                                                                                                                                                                                                                                   |
+| License                     | https://creativecommons.org/licenses/by/4.0/                                                                                                                                                                                                                                                                                                                           |
+| North bound latitude        | 53.7                                                                                                                                                                                                                                                                                                                                                                   |
+| East bound longitude        | 7.4                                                                                                                                                                                                                                                                                                                                                                    |
+| South bound latitude        | 50.6                                                                                                                                                                                                                                                                                                                                                                   |
+| West bound longitude        | 3.2                                                                                                                                                                                                                                                                                                                                                                    |
+| Dataset edition             | 3                                                                                                                                                                                                                                                                                                                                                                      |
+| Dataset manager             | Dr. Peter Siegmund                                                                                                                                                                                                                                                                                                                                                     |
+| Maintainer                  | KNMI Data Services                                                                                                                                                                                                                                                                                                                                                     |
+| Publication date            | 2015-05-04                                                                                                                                                                                                                                                                                                                                                             |
+| Reference system identifier | EPSG28992                                                                                                                                                                                                                                                                                                                                                              |
+| Dataset start time          | 1961-01-01                                                                                                                                                                                                                                                                                                                                                             |
+| Dataset end time            | 9999-12-31                                                                                                                                                                                                                                                                                                                                                             |
+| Identifier                  | urn:xkdc:ds:nl.knmi::Tx1/2/                                                                                                                                                                                                                                                                                                                                            |
+| Lineage statement           | The interpolation method is Inverse Distance Weighted interpolation (IDW) using power parameter 2.0. Block size is 20km and search radius 110km. Due to use of a block it is not an exact interpolator: the interpolated value at a point can differ from the measured value. The number of observations changes from 15 (1961) to 26 (1991), 37 (1994) and 34 (2012). |
+| Purpose                     | Research                                                                                                                                                                                                                                                                                                                                                               |
+| Use limitation              | No use limitations                                                                                                                                                                                                                                                                                                                                                     |
 
 # Start of project
 
@@ -144,26 +143,27 @@ Successfully installed h5py-3.15.1 numpy-2.3.5
 ```
 
 ## Install system libraries
+
 Only if needed and not already done
 
 ```bash
 $ sudo apt update
-[sudo] password for xxxx: 
+[sudo] password for xxxx:
 Hit:1 http://nl.archive.ubuntu.com/ubuntu noble InRelease
-Hit:2 http://nl.archive.ubuntu.com/ubuntu noble-updates InRelease                                                                                                                      
-Hit:3 http://nl.archive.ubuntu.com/ubuntu noble-backports InRelease                                                                                                                    
-Hit:4 https://dl.google.com/linux/chrome/deb stable InRelease                                                                                                                          
-Hit:5 https://download.docker.com/linux/ubuntu noble InRelease                                                                                                                         
-Hit:6 https://apt.postgresql.org/pub/repos/apt noble-pgdg InRelease                                                                                                                  
-Hit:7 https://repo.protonvpn.com/debian stable InRelease                                                                       
-Get:8 https://esm.ubuntu.com/apps/ubuntu noble-apps-security InRelease [8,371 B]                         
-Get:9 https://esm.ubuntu.com/apps/ubuntu noble-apps-updates InRelease [8,220 B]                 
-Get:10 https://esm.ubuntu.com/infra/ubuntu noble-infra-security InRelease [8,214 B]             
-Get:11 https://esm.ubuntu.com/infra/ubuntu noble-infra-updates InRelease [8,213 B]               
-Get:12 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]                       
+Hit:2 http://nl.archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:3 http://nl.archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:4 https://dl.google.com/linux/chrome/deb stable InRelease
+Hit:5 https://download.docker.com/linux/ubuntu noble InRelease
+Hit:6 https://apt.postgresql.org/pub/repos/apt noble-pgdg InRelease
+Hit:7 https://repo.protonvpn.com/debian stable InRelease
+Get:8 https://esm.ubuntu.com/apps/ubuntu noble-apps-security InRelease [8,371 B]
+Get:9 https://esm.ubuntu.com/apps/ubuntu noble-apps-updates InRelease [8,220 B]
+Get:10 https://esm.ubuntu.com/infra/ubuntu noble-infra-security InRelease [8,214 B]
+Get:11 https://esm.ubuntu.com/infra/ubuntu noble-infra-updates InRelease [8,213 B]
+Get:12 http://security.ubuntu.com/ubuntu noble-security InRelease [126 kB]
 Get:13 https://esm.ubuntu.com/apps/ubuntu noble-apps-security/main amd64 Packages [261 kB]
 Get:14 http://security.ubuntu.com/ubuntu noble-security/main amd64 Packages [1,334 kB]
-Fetched 1,755 kB in 1s (2,014 kB/s)  
+Fetched 1,755 kB in 1s (2,014 kB/s)
 Reading package lists... Done
 Building dependency tree... Done
 Reading state information... Done
@@ -198,7 +198,7 @@ Get:9 http://nl.archive.ubuntu.com/ubuntu noble/main amd64 libjpeg-dev amd64 8c-
 Get:10 http://nl.archive.ubuntu.com/ubuntu noble/universe amd64 libaec-dev amd64 1.1.2-1build1 [19.8 kB]
 Get:11 http://nl.archive.ubuntu.com/ubuntu noble-updates/main amd64 libssl-dev amd64 3.0.13-0ubuntu3.6 [2,408 kB]
 Get:12 http://nl.archive.ubuntu.com/ubuntu noble/universe amd64 libhdf5-dev amd64 1.10.10+repack-3.1ubuntu4 [2,777 kB]
-Fetched 6,220 kB in 1s (7,875 kB/s)     
+Fetched 6,220 kB in 1s (7,875 kB/s)
 Selecting previously unselected package hdf5-helpers.
 (Reading database ... 261110 files and directories currently installed.)
 Preparing to unpack .../00-hdf5-helpers_1.10.10+repack-3.1ubuntu4_amd64.deb ...
@@ -367,6 +367,7 @@ where = ["."]
 ```
 
 ## Add a basic HDF5 test script
+
 See [hdf5test/example.py](hdf5test/example.py)
 
 ## Run example
@@ -406,7 +407,7 @@ $ pytest
 ================================================================================= test session starts ==================================================================================
 platform linux -- Python 3.12.3, pytest-9.0.1, pluggy-1.6.0
 rootdir: /home/bvpelt/Develop/hdf5test
-collected 0 items                                                                                                                                                                      
+collected 0 items
 
 ================================================================================ no tests ran in 0.00s =================================================================================
 
@@ -443,12 +444,12 @@ Extension 'ms-python.vscode-pylance' is already installed.
 ```
 
 ## Select interpreter
+
 Select the project’s virtual environment
 
 Press:
 
 Ctrl+Shift+P → “Python: Select Interpreter”
-
 
 Choose:
 
@@ -460,14 +461,10 @@ Choose:
 {
     "python.defaultInterpreterPath": ".venv/bin/python",
     "python.terminal.activateEnvironment": true,
-    "python.analysis.extraPaths": [
-        "hdf5test"
-    ],
+    "python.analysis.extraPaths": ["hdf5test"],
     "python.testing.pytestEnabled": true,
     "python.testing.unittestEnabled": false,
-    "python.testing.pytestArgs": [
-        "tests"
-    ],
+    "python.testing.pytestArgs": ["tests"],
     "editor.codeActionsOnSave": {
         "source.organizeImports": "explicit"
     },
@@ -508,6 +505,7 @@ Create .vscode/launch.json
 ```
 
 ## (Recommended) Add a .editorconfig for consistent coding style
+
 Create .editorconfig
 
 ```text
@@ -529,7 +527,7 @@ Created HDF5 file at: sample.h5
 Dataset contents: [0 1 2 3 4 5 6 7 8 9]
 
 
-$ python hdf5test/example.py 
+$ python hdf5test/example.py
 Created HDF5 file at: sample.h5
 Dataset contents: [0 1 2 3 4 5 6 7 8 9]
 
@@ -549,21 +547,26 @@ HTTP request sent, awaiting response... 200 OK
 Length: 30971683 (30M) [application/java-archive]
 Saving to: ‘openapi-generator-cli.jar’
 
-openapi-generator-cli.jar                     100%[=================================================================================================>]  29.54M  14.1MB/s    in 2.1s    
+openapi-generator-cli.jar                     100%[=================================================================================================>]  29.54M  14.1MB/s    in 2.1s
 
 2025-11-27 19:22:43 (14.1 MB/s) - ‘openapi-generator-cli.jar’ saved [30971683/30971683]
 
 $ alias openapi-generator="java -jar $(pwd)/openapi-generator-cli.jar"
 ```
 
-
 ## Generate openapi client
 
+This generates a directory containing:
+
+-   A typed client package
+-   Models (FileSummary, FileDownload, ListFilesResponse, …)
+-   API interfaces
+-   Authentication support
+-   Documentation
+-   A ready-to-install Python package
+
 ```bash
-$ openapi-generator generate \
-  -i apis/knmi-api.json \
-  -g python \
-  -o knmi_client
+$ openapi-generator generate   -i openapi/knmi.json   -g python   -o knmi_client
 
 [main] INFO  o.o.codegen.DefaultGenerator - Generating with dryRun=false
 [main] INFO  o.o.c.ignore.CodegenIgnoreProcessor - Output directory (/home/bvpelt/Develop/hdf5test/knmi_client) does not exist, or is inaccessible. No file (.openapi-generator-ignore) will be evaluated.
@@ -618,4 +621,53 @@ $ openapi-generator generate \
 ############################################################################################
 
 
+```
+
+## Import the generated openapi client
+
+```bash
+(.venv) bvpelt@uranus:~/Develop/hdf5test$ cd ./knmi_client/
+(.venv) bvpelt@uranus:~/Develop/hdf5test/knmi_client$ pip install -e .
+Obtaining file:///home/bvpelt/Develop/hdf5test/knmi_client
+  Installing build dependencies ... done
+  Checking if build backend supports build_editable ... done
+  Getting requirements to build editable ... done
+  Preparing editable metadata (pyproject.toml) ... done
+Collecting urllib3<3.0.0,>=2.1.0 (from openapi_client==1.0.0)
+  Downloading urllib3-2.5.0-py3-none-any.whl.metadata (6.5 kB)
+Collecting python-dateutil>=2.8.2 (from openapi_client==1.0.0)
+  Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl.metadata (8.4 kB)
+Collecting pydantic>=2 (from openapi_client==1.0.0)
+  Downloading pydantic-2.12.5-py3-none-any.whl.metadata (90 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 90.6/90.6 kB 5.2 MB/s eta 0:00:00
+Collecting typing-extensions>=4.7.1 (from openapi_client==1.0.0)
+  Downloading typing_extensions-4.15.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting annotated-types>=0.6.0 (from pydantic>=2->openapi_client==1.0.0)
+  Downloading annotated_types-0.7.0-py3-none-any.whl.metadata (15 kB)
+Collecting pydantic-core==2.41.5 (from pydantic>=2->openapi_client==1.0.0)
+  Downloading pydantic_core-2.41.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (7.3 kB)
+Collecting typing-inspection>=0.4.2 (from pydantic>=2->openapi_client==1.0.0)
+  Downloading typing_inspection-0.4.2-py3-none-any.whl.metadata (2.6 kB)
+Collecting six>=1.5 (from python-dateutil>=2.8.2->openapi_client==1.0.0)
+  Downloading six-1.17.0-py2.py3-none-any.whl.metadata (1.7 kB)
+Downloading pydantic-2.12.5-py3-none-any.whl (463 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 463.6/463.6 kB 8.2 MB/s eta 0:00:00
+Downloading pydantic_core-2.41.5-cp312-cp312-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (2.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 14.2 MB/s eta 0:00:00
+Downloading python_dateutil-2.9.0.post0-py2.py3-none-any.whl (229 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 229.9/229.9 kB 13.3 MB/s eta 0:00:00
+Downloading typing_extensions-4.15.0-py3-none-any.whl (44 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.6/44.6 kB 9.5 MB/s eta 0:00:00
+Downloading urllib3-2.5.0-py3-none-any.whl (129 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 129.8/129.8 kB 11.6 MB/s eta 0:00:00
+Downloading annotated_types-0.7.0-py3-none-any.whl (13 kB)
+Downloading six-1.17.0-py2.py3-none-any.whl (11 kB)
+Downloading typing_inspection-0.4.2-py3-none-any.whl (14 kB)
+Building wheels for collected packages: openapi_client
+  Building editable for openapi_client (pyproject.toml) ... done
+  Created wheel for openapi_client: filename=openapi_client-1.0.0-0.editable-py3-none-any.whl size=4544 sha256=aae0205a760f9838b415cccb2459f89a624d2a85fcd7a953761a2dad3cea9092
+  Stored in directory: /tmp/pip-ephem-wheel-cache-7fq_6n5g/wheels/d0/3d/8b/081b6d19f460984d9ef90cf14223e4a49c0fb9be59dd298faa
+Successfully built openapi_client
+Installing collected packages: urllib3, typing-extensions, six, annotated-types, typing-inspection, python-dateutil, pydantic-core, pydantic, openapi_client
+Successfully installed annotated-types-0.7.0 openapi_client-1.0.0 pydantic-2.12.5 pydantic-core-2.41.5 python-dateutil-2.9.0.post0 six-1.17.0 typing-extensions-4.15.0 typing-inspection-0.4.2 urllib3-2.5.0
 ```

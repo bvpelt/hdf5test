@@ -1,0 +1,21 @@
+[project]
+name = "hdf5test"
+version = "0.1.0"
+description = "Testing HDF5 + KNMI API"
+authors = [{ name = "Your Name" }]
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "h5py",
+    "numpy",
+]
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+package-dir = {"" = "src"}
+
+[tool.setuptools.packages.find]
+where = ["src"]

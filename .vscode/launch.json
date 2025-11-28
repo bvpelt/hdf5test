@@ -2,11 +2,14 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Run example.py",
+            "name": "Python: Run example",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/hdf5test/example.py",
-            "console": "integratedTerminal"
+            "program": "${workspaceFolder}/src/hdf5test/example.py",
+            "console": "integratedTerminal",
+            "env": {
+                "KNMI_API_KEY": "${env:KNMI_API_KEY}"
+            }
         }
     ]
 }
