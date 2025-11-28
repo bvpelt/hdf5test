@@ -208,4 +208,5 @@ __marimo__/
 knmi_client/
 
 # API KEY
-config.bash*.nc
+config.bash
+*.nc
