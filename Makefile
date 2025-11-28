@@ -20,5 +20,5 @@ format:
 	black .
 
 run-example:
-	python -m hdf5test.example.py
+	python -m hdf5test.example
 

@@ -41,7 +41,7 @@ class DefaultApi:
 
 
     @validate_call
-    def v1_datasets_dataset_name_versions_version_id_files_filename_url_get(
+    def download_files(
         self,
         dataset_name: Annotated[StrictStr, Field(description="Name of the dataset")],
         version_id: Annotated[StrictStr, Field(description="Version of the dataset")],
@@ -91,7 +91,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._v1_datasets_dataset_name_versions_version_id_files_filename_url_get_serialize(
+        _param = self._download_files_serialize(
             dataset_name=dataset_name,
             version_id=version_id,
             filename=filename,
@@ -116,7 +116,7 @@ class DefaultApi:
 
 
     @validate_call
-    def v1_datasets_dataset_name_versions_version_id_files_filename_url_get_with_http_info(
+    def download_files_with_http_info(
         self,
         dataset_name: Annotated[StrictStr, Field(description="Name of the dataset")],
         version_id: Annotated[StrictStr, Field(description="Version of the dataset")],
@@ -166,7 +166,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._v1_datasets_dataset_name_versions_version_id_files_filename_url_get_serialize(
+        _param = self._download_files_serialize(
             dataset_name=dataset_name,
             version_id=version_id,
             filename=filename,
@@ -191,7 +191,7 @@ class DefaultApi:
 
 
     @validate_call
-    def v1_datasets_dataset_name_versions_version_id_files_filename_url_get_without_preload_content(
+    def download_files_without_preload_content(
         self,
         dataset_name: Annotated[StrictStr, Field(description="Name of the dataset")],
         version_id: Annotated[StrictStr, Field(description="Version of the dataset")],
@@ -241,7 +241,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._v1_datasets_dataset_name_versions_version_id_files_filename_url_get_serialize(
+        _param = self._download_files_serialize(
             dataset_name=dataset_name,
             version_id=version_id,
             filename=filename,
@@ -261,7 +261,7 @@ class DefaultApi:
         return response_data.response
 
 
-    def _v1_datasets_dataset_name_versions_version_id_files_filename_url_get_serialize(
+    def _download_files_serialize(
         self,
         dataset_name,
         version_id,
@@ -332,7 +332,7 @@ class DefaultApi:
 
 
     @validate_call
-    def v1_datasets_dataset_name_versions_version_id_files_get(
+    def list_files(
         self,
         dataset_name: Annotated[StrictStr, Field(description="Name of the dataset")],
         version_id: Annotated[StrictStr, Field(description="Version of the dataset")],
@@ -400,7 +400,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._v1_datasets_dataset_name_versions_version_id_files_get_serialize(
+        _param = self._list_files_serialize(
             dataset_name=dataset_name,
             version_id=version_id,
             max_keys=max_keys,
@@ -431,7 +431,7 @@ class DefaultApi:
 
 
     @validate_call
-    def v1_datasets_dataset_name_versions_version_id_files_get_with_http_info(
+    def list_files_with_http_info(
         self,
         dataset_name: Annotated[StrictStr, Field(description="Name of the dataset")],
         version_id: Annotated[StrictStr, Field(description="Version of the dataset")],
@@ -499,7 +499,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._v1_datasets_dataset_name_versions_version_id_files_get_serialize(
+        _param = self._list_files_serialize(
             dataset_name=dataset_name,
             version_id=version_id,
             max_keys=max_keys,
@@ -530,7 +530,7 @@ class DefaultApi:
 
 
     @validate_call
-    def v1_datasets_dataset_name_versions_version_id_files_get_without_preload_content(
+    def list_files_without_preload_content(
         self,
         dataset_name: Annotated[StrictStr, Field(description="Name of the dataset")],
         version_id: Annotated[StrictStr, Field(description="Version of the dataset")],
@@ -598,7 +598,7 @@ class DefaultApi:
         :return: Returns the result object.
         """ # noqa: E501
 
-        _param = self._v1_datasets_dataset_name_versions_version_id_files_get_serialize(
+        _param = self._list_files_serialize(
             dataset_name=dataset_name,
             version_id=version_id,
             max_keys=max_keys,
@@ -624,7 +624,7 @@ class DefaultApi:
         return response_data.response
 
 
-    def _v1_datasets_dataset_name_versions_version_id_files_get_serialize(
+    def _list_files_serialize(
         self,
         dataset_name,
         version_id,

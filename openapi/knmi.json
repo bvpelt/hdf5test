@@ -6,11 +6,15 @@
         "description": "For more information on the Open Data API and how to use it, visit the [Open Data API Documentation Page](https://developer.dataplatform.knmi.nl/open-data-api)."
     },
     "servers": [{ "url": "https://api.dataplatform.knmi.nl/open-data" }],
+
+    "security": [{ "APIKeyHeader": [] }],
+
     "paths": {
         "/v1/datasets/{datasetName}/versions/{versionId}/files": {
             "get": {
                 "summary": "Get paginated list of files for dataset",
                 "description": "Get paginated list of files for dataset",
+                "operationId": "listFiles",
                 "parameters": [
                     {
                         "name": "datasetName",
@@ -148,6 +152,7 @@
             "get": {
                 "summary": "Get a temporary download URL for a dataset file",
                 "description": "Get a temporary download URL for a dataset file",
+                "operationId": "downloadFiles",
                 "parameters": [
                     {
                         "name": "datasetName",

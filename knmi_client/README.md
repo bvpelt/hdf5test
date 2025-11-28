@@ -83,11 +83,11 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Get a temporary download URL for a dataset file
-        api_response = api_instance.v1_datasets_dataset_name_versions_version_id_files_filename_url_get(dataset_name, version_id, filename)
-        print("The response of DefaultApi->v1_datasets_dataset_name_versions_version_id_files_filename_url_get:\n")
+        api_response = api_instance.download_files(dataset_name, version_id, filename)
+        print("The response of DefaultApi->download_files:\n")
         pprint(api_response)
     except ApiException as e:
-        print("Exception when calling DefaultApi->v1_datasets_dataset_name_versions_version_id_files_filename_url_get: %s\n" % e)
+        print("Exception when calling DefaultApi->download_files: %s\n" % e)
 
 ```
 
@@ -97,8 +97,8 @@ All URIs are relative to *https://api.dataplatform.knmi.nl/open-data*
 
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
-*DefaultApi* | [**v1_datasets_dataset_name_versions_version_id_files_filename_url_get**](docs/DefaultApi.md#v1_datasets_dataset_name_versions_version_id_files_filename_url_get) | **GET** /v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url | Get a temporary download URL for a dataset file
-*DefaultApi* | [**v1_datasets_dataset_name_versions_version_id_files_get**](docs/DefaultApi.md#v1_datasets_dataset_name_versions_version_id_files_get) | **GET** /v1/datasets/{datasetName}/versions/{versionId}/files | Get paginated list of files for dataset
+*DefaultApi* | [**download_files**](docs/DefaultApi.md#download_files) | **GET** /v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url | Get a temporary download URL for a dataset file
+*DefaultApi* | [**list_files**](docs/DefaultApi.md#list_files) | **GET** /v1/datasets/{datasetName}/versions/{versionId}/files | Get paginated list of files for dataset
 
 
 ## Documentation For Models

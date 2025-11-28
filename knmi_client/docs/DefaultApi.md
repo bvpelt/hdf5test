@@ -4,12 +4,12 @@ All URIs are relative to *https://api.dataplatform.knmi.nl/open-data*
 
 Method | HTTP request | Description
 ------------- | ------------- | -------------
-[**v1_datasets_dataset_name_versions_version_id_files_filename_url_get**](DefaultApi.md#v1_datasets_dataset_name_versions_version_id_files_filename_url_get) | **GET** /v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url | Get a temporary download URL for a dataset file
-[**v1_datasets_dataset_name_versions_version_id_files_get**](DefaultApi.md#v1_datasets_dataset_name_versions_version_id_files_get) | **GET** /v1/datasets/{datasetName}/versions/{versionId}/files | Get paginated list of files for dataset
+[**download_files**](DefaultApi.md#download_files) | **GET** /v1/datasets/{datasetName}/versions/{versionId}/files/{filename}/url | Get a temporary download URL for a dataset file
+[**list_files**](DefaultApi.md#list_files) | **GET** /v1/datasets/{datasetName}/versions/{versionId}/files | Get paginated list of files for dataset
 
 
-# **v1_datasets_dataset_name_versions_version_id_files_filename_url_get**
-> FileDownload v1_datasets_dataset_name_versions_version_id_files_filename_url_get(dataset_name, version_id, filename)
+# **download_files**
+> FileDownload download_files(dataset_name, version_id, filename)
 
 Get a temporary download URL for a dataset file
 
@@ -52,11 +52,11 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Get a temporary download URL for a dataset file
-        api_response = api_instance.v1_datasets_dataset_name_versions_version_id_files_filename_url_get(dataset_name, version_id, filename)
-        print("The response of DefaultApi->v1_datasets_dataset_name_versions_version_id_files_filename_url_get:\n")
+        api_response = api_instance.download_files(dataset_name, version_id, filename)
+        print("The response of DefaultApi->download_files:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling DefaultApi->v1_datasets_dataset_name_versions_version_id_files_filename_url_get: %s\n" % e)
+        print("Exception when calling DefaultApi->download_files: %s\n" % e)
 ```
 
 
@@ -91,8 +91,8 @@ Name | Type | Description  | Notes
 
 [[Back to top]](#) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to Model list]](../README.md#documentation-for-models) [[Back to README]](../README.md)
 
-# **v1_datasets_dataset_name_versions_version_id_files_get**
-> ListFilesResponse v1_datasets_dataset_name_versions_version_id_files_get(dataset_name, version_id, max_keys=max_keys, sorting=sorting, order_by=order_by, begin=begin, end=end, next_page_token=next_page_token, start_after_filename=start_after_filename)
+# **list_files**
+> ListFilesResponse list_files(dataset_name, version_id, max_keys=max_keys, sorting=sorting, order_by=order_by, begin=begin, end=end, next_page_token=next_page_token, start_after_filename=start_after_filename)
 
 Get paginated list of files for dataset
 
@@ -141,11 +141,11 @@ with openapi_client.ApiClient(configuration) as api_client:
 
     try:
         # Get paginated list of files for dataset
-        api_response = api_instance.v1_datasets_dataset_name_versions_version_id_files_get(dataset_name, version_id, max_keys=max_keys, sorting=sorting, order_by=order_by, begin=begin, end=end, next_page_token=next_page_token, start_after_filename=start_after_filename)
-        print("The response of DefaultApi->v1_datasets_dataset_name_versions_version_id_files_get:\n")
+        api_response = api_instance.list_files(dataset_name, version_id, max_keys=max_keys, sorting=sorting, order_by=order_by, begin=begin, end=end, next_page_token=next_page_token, start_after_filename=start_after_filename)
+        print("The response of DefaultApi->list_files:\n")
         pprint(api_response)
     except Exception as e:
-        print("Exception when calling DefaultApi->v1_datasets_dataset_name_versions_version_id_files_get: %s\n" % e)
+        print("Exception when calling DefaultApi->list_files: %s\n" % e)
 ```
 
 
