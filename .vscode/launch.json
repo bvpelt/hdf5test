@@ -5,7 +5,8 @@
             "name": "Python: Run example",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/src/hdf5test/example.py",
+            "program": "${workspaceFolder}/src/hdf5test/loadnetcf.py",
+            "args": ["."],
             "console": "integratedTerminal",
             "env": {
                 "KNMI_API_KEY": "${env:KNMI_API_KEY}"

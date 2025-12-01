@@ -210,3 +210,4 @@ knmi_client/
 # API KEY
 config.bash
 *.nc
+summary.*

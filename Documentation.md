@@ -671,3 +671,73 @@ Successfully built openapi_client
 Installing collected packages: urllib3, typing-extensions, six, annotated-types, typing-inspection, python-dateutil, pydantic-core, pydantic, openapi_client
 Successfully installed annotated-types-0.7.0 openapi_client-1.0.0 pydantic-2.12.5 pydantic-core-2.41.5 python-dateutil-2.9.0.post0 six-1.17.0 typing-extensions-4.15.0 typing-inspection-0.4.2 urllib3-2.5.0
 ```
+
+# Generate output
+
+This retrieves from the dataset "Tx1" version "2" all files and download the contents in the current directory
+
+```bash
+python -m hdf5test.temperature
+```
+
+# NetCF
+
+After [generating output](#generate-output) as (.nc) files in the current directory
+
+```bash
+python -m hdf5test.netcdf .
+```
+
+# Database
+
+Install python package
+
+```bash
+pip install psycopg[binary]
+Collecting psycopg[binary]
+  Downloading psycopg-3.3.0-py3-none-any.whl.metadata (4.3 kB)
+Requirement already satisfied: typing-extensions>=4.6 in ./.venv/lib/python3.12/site-packages (from psycopg[binary]) (4.15.0)
+Collecting psycopg-binary==3.3.0 (from psycopg[binary])
+  Downloading psycopg_binary-3.3.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (2.7 kB)
+Downloading psycopg_binary-3.3.0-cp312-cp312-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (5.1 MB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 5.1/5.1 MB 14.0 MB/s eta 0:00:00
+Downloading psycopg-3.3.0-py3-none-any.whl (212 kB)
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 212.8/212.8 kB 1.7 MB/s eta 0:00:00
+Installing collected packages: psycopg-binary, psycopg
+Successfully installed psycopg-3.3.0 psycopg-binary-3.3.0
+
+```
+
+As user postgres
+
+```bash
+$ createdb netcf
+$ psql -U postgres -d netcf
+netcf=# create extension postgis;
+CREATE EXTENSION
+
+GRANT ALL PRIVILEGES ON SCHEMA public TO testuser;
+GRANT ALL ON ALL TABLES IN SCHEMA public TO testuser;
+GRANT ALL ON ALL SEQUENCES IN SCHEMA public TO testuser;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON TABLES TO testuser;
+ALTER DEFAULT PRIVILEGES IN SCHEMA public GRANT ALL PRIVILEGES ON SEQUENCES TO testuser;
+
+
+netcf=# CREATE TABLE dataset_metadata (
+    id SERIAL PRIMARY KEY,
+    iso_dataset TEXT,
+    product TEXT,
+    projection TEXT
+);
+CREATE TABLE
+netcf=# CREATE TABLE grid_cells (
+    time        timestamptz NOT NULL,
+    y           int NOT NULL,
+    x           int NOT NULL,
+    station     int,
+    station_value double precision,
+    prediction  double precision
+);
+CREATE TABLE
+
+```
